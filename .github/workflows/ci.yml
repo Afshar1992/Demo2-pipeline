@@ -21,4 +21,4 @@ jobs:
       run: docker build -t naqib1/demo2-pipeline .
     
     - name: Push to Dockerhub
-      run: docker push naqib1/demo2pipeline:latest
+      run: docker push naqib1/demo2-pipeline:latest
