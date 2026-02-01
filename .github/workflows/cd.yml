@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     
     steps:
     - name: Check Docker version
@@ -21,4 +21,5 @@ jobs:
       run: docker rm -f demo2-pipeline-container || true
     
     - name: Run Docker Container
+
       run: docker run -d -p 7070:7070 --name demo2-pipeline-container naqib1/demo2-pipeline
