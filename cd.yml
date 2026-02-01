@@ -1,0 +1,24 @@
+name: CD Pipeline
+
+on:
+  workflow_run:
+    workflows: ["CI Pipeline"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    
+    steps:
+    - name: Check Docker version
+      run: docker --version
+    
+    - name: Pull docker image
+      run: docker pull naqib1/demo2-pipeline:latest
+    
+    - name: Delete Old docker container
+      run: docker rm -f demo2-pipeline-container || true
+    
+    - name: Run Docker Container
+      run: docker run -d -p 7070:7070 --name demo2-pipeline-container naqib1/demo2-pipeline
